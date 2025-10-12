@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El recetario de la abuela</title>
+</head>
+<body>
+    <h1>Bienvenidos!!</h1>
+    <h2>El recetario de la abuela tiene {{recetas}} recetas.</h2>
+
+    <ul>
+        {% for receta in recetas_list %}
+            <li><a href="{% url 'receta' receta %}">{{receta|title}}</a></li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
