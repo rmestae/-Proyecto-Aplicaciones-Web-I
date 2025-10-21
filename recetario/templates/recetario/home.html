@@ -1,19 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El recetario de la abuela</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block page_title %}Recetario de la Abuela{% endblock %}
+
+{% block content %}
+    {%include 'recetario/includes/header.html'%}
     <h1>Bienvenidos!!</h1>
     <h2>El recetario de la abuela tiene {{recetas}} recetas.</h2>
 
-    <ul>
-        {% for receta in recetas_list %}
-            <li><a href="{% url 'receta' receta %}">{{receta|title}}</a></li>
-        {% endfor %}
-    </ul>
-    
-</body>
-</html>
+    <div class="container-fluid">
+        <div class="row">
+                {% for receta, datos in recetas_list %}
+                    <div class="col-md-4 mb-3 mb-sm-0">
+                            <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{receta|title}}</h5>
+                                <p class="card-text">{{datos.descripcion}}</p>
+                                <a href="{% url 'receta' receta %}" class="btn btn-primary">Ir a la receta</a>
+                            </div>
+                            </div>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+{% endblock %}

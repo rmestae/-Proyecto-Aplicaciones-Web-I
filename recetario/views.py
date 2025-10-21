@@ -1,18 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from .recetas_data import recetas
 
 # Create your views here.
-recetas = {
-    "Receta 1" : "proximamente 1",
-    "Receta 2" : "proximamente 2",
-    "Receta 3" : "proximamente 3"
-}
 
 def index(request):
     
     recetas_count = len(recetas)
-
-    recetas_list = list(recetas.keys())
+    recetas_list = (sorted(recetas.items()))
 
     return render(request, 'recetario/home.html', {
         "recetas" : recetas_count,
@@ -21,12 +16,20 @@ def index(request):
 
 def receta(request, name):
     try:
-        receta_text = recetas[name]
+        receta_text = recetas[name]['descripcion']
+        tiempo = recetas[name]['tiempo']
+        utensilios = list(recetas[name]['utensilios'])
+        ingredientes = list(recetas[name]['ingredientes'])
+        procedimiento = list(recetas[name]['procedimiento'])
         return render(request,
                       'recetario/receta.html',
                       {
                           "receta_name" : name,
                           "receta_text" : receta_text,
+                          "tiempo" : tiempo,
+                          "utensilios" : utensilios,
+                          "ingredientes" : ingredientes,
+                          "procedimiento" : procedimiento,
                       })
     
     except:

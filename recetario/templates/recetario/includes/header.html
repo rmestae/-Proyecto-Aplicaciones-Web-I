@@ -1,0 +1,11 @@
+<header>
+    <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'index' %}">
+      <img src="/static/libro-abierto.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      {% block page_title %}{{receta_name|title}} | El Recetario de la Abuela{% endblock %}
+
+    </a>
+  </div>
+</nav>
+</header>

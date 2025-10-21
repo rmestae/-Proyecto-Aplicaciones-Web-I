@@ -1,12 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{receta_name|title}}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block page_title %}{{receta_name|title}}{% endblock %}
+
+{% block content %}
+    {%include 'recetario/includes/header.html'%}
+    <a href="{% url 'index' %}">Regresar</a>
     <h1>{{receta_name|title}}</h1>
     <h2>{{receta_text}}</h2>
-</body>
-</html>
+
+    <h3>Tiempo de preparación</h3>
+    <p>{{tiempo}}</p>
+
+    <h3>Utensilios</h3>
+    {% for utensilio in utensilios %}
+        <ul>
+            <li>{{utensilio|title}}</li>
+        </ul>
+    {% endfor %}
+
+    <h3>Ingredientes</h3>
+    {% for ingrediente in ingredientes %}
+        <ul>
+            <li>{{ingrediente|capfirst}}</li>
+        </ul>
+    {% endfor %}
+    
+    <h3>Procedimiento</h3>
+    {% for paso in procedimiento %}
+        <ol>
+            <li>{{paso|capfirst}}.</li>
+        </ol>
+    {% endfor %}
+
+
+{% endblock %}
