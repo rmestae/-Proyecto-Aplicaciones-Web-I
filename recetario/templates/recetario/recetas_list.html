@@ -1,0 +1,36 @@
+{% extends 'recetario/base.html' %}
+{% load static %}
+
+{% block page_title %}El Recetario de la Abuela{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <img src="https://cdn.pixabay.com/photo/2019/05/07/09/01/spices-4185324_1280.jpg">
+</div>
+
+<div class="list_container">
+    {% for receta in recetas_list %}
+    <div class="list_element-container">
+
+        <div class="list_container-botones">
+            <a href="{% url 'update-receta' receta.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="{% url 'delete-receta' receta.pk %}" class="btn btn-primary"><i class="fa-solid fa-trash-can"></i></a>
+        </div>
+
+        <h3 class="card-title">{{receta.nombre_receta|title}}</h3>
+        <p class="card-text">{{receta.descripcion}}</p>
+        {% if receta.image %}
+        <div class="list_image-container">
+            <img src="{{ receta.image.url }}" class="list_image">
+        </div>
+        {%else%}
+        <div class="list_image-container">
+            <img src="{% static 'recetario/placeholder.png'%}" class="list_image">
+        </div>
+        {%endif%}
+        <a href="{% url 'single-receta' receta.pk %}" class="list_boton">Ir a la receta</a>
+
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

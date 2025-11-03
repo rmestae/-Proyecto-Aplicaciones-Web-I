@@ -1,36 +1,50 @@
-{% extends 'base.html' %}
+{% extends 'recetario/base.html' %}
+{% load static %}
 
-{% block page_title %}{{receta_name|title}}{% endblock %}
+{% block page_title %}{{receta.nombre_receta|title}} | El Recetario de la Abuela {% endblock %}
 
 {% block content %}
-    {%include 'recetario/includes/header.html'%}
-    <a href="{% url 'index' %}">Regresar</a>
-    <h1>{{receta_name|title}}</h1>
-    <h2>{{receta_text}}</h2>
+<div class="recetas_container">
+    <a href="{% url 'recetas-list' %}"><i class="fa-solid fa-arrow-left arrow-link"></i></a>
+    <h1>{{receta.nombre_receta|title}}</h1>
+    <h2>{{receta.descripcion}}</h2>
 
-    <h3>Tiempo de preparación</h3>
-    <p>{{tiempo}}</p>
+    {% if receta.image %}
+        <img src="{{ receta.image.url }}" width="200" >
+    {%else%}
+        <img src="{% static 'recetario/placeholder.png' %}" width="200" >
+    {%endif%}
 
-    <h3>Utensilios</h3>
-    {% for utensilio in utensilios %}
+    <div class="receta_title">
+    <i class="fa-solid fa-blender"></i><h3>Utensilios</h3>
+    </div>
         <ul>
-            <li>{{utensilio|title}}</li>
+        {% for utensilio in utensilios %}
+         <li>{{utensilio|title}}</li>
+        {% endfor %}
         </ul>
-    {% endfor %}
 
-    <h3>Ingredientes</h3>
+    <div class="receta_title">
+    <i class="fa-solid fa-carrot"></i><h3>Ingredientes</h3>
+    </div>
+    <ul>
     {% for ingrediente in ingredientes %}
-        <ul>
+        
             <li>{{ingrediente|capfirst}}</li>
-        </ul>
+        
     {% endfor %}
+    </ul>
     
-    <h3>Procedimiento</h3>
-    {% for paso in procedimiento %}
+    <div class="receta_title">
+    <i class="fa-solid fa-kitchen-set"></i><h3>Procedimiento</h3>
+    </div>
         <ol>
-            <li>{{paso|capfirst}}.</li>
+        {% for paso in procedimiento %}
+            
+                <li>{{paso|capfirst}}.</li>
+            
+        {% endfor %}
         </ol>
-    {% endfor %}
-
+</div>
 
 {% endblock %}

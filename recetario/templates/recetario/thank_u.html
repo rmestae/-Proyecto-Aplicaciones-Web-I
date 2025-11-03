@@ -1,0 +1,12 @@
+{% extends 'recetario/base.html' %}
+{% load static %}
+
+{% block page_title %}Gracias{% endblock %}
+
+{% block content %}
+            <div class="thank-u">
+              <h1 class="gracias">¡Muchas gracias!</h1>
+              <i class="fa-solid fa-face-smile smiley"></i>
+              <a href="{% url 'recetas-list' %}"><div class="boton thank-u_boton">Inicio</div></a>
+            </div>
+{% endblock %}

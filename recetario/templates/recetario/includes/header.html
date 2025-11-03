@@ -1,11 +1,22 @@
+{%load static%}
 <header>
-    <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'index' %}">
-      <img src="/static/libro-abierto.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-      {% block page_title %}{{receta_name|title}} | El Recetario de la Abuela{% endblock %}
+<nav>
+  <div class="navcontainer">
+    <div class="navbar-brandname">
+      <a class="navbar-brand" href="{% url 'recetas-list' %}">
+        <i class="fa-solid fa-utensils navbarlogo"></i>    
+      </a>
 
-    </a>
+      {% if receta %}
+        <p class="navTitle">{{receta.nombre_receta}} | El Recetario de la Abuela</p>
+      {% else %}
+        <p class="navTitle"> El Recetario de la Abuela</p>
+      {% endif %}
+    </div>
+
+    <div class="boton-container">
+      <a href="{% url 'nueva-receta' %}" class="boton">Agregar Receta</a>
+    </div>
   </div>
 </nav>
 </header>

@@ -1,0 +1,19 @@
+{% extends 'recetario/base.html' %}
+
+{% block page_title %}
+    Borrar {{receta.receta_name}}
+{% endblock %}
+
+{% block content %}
+   
+    <div class="form">
+        <h1>¿Deseas eliminar "{{receta.nombre_receta}}"?</h1>
+        <h2>{{receta.descripcion}}</h2>
+
+        <form method = "post">
+            {% csrf_token %}
+            <button type="sumbit" class="boton"> Sí, eliminar</button>
+            <a href="{% url 'recetas-list'%}" class="form_link">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}

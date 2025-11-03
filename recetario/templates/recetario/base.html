@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %}Title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% block css_styles %}{% endblock %}
+    {%include 'recetario/includes/header.html'%}
+</head>
+<body>
+    <div class="main_container">
+    {% block content %}{% endblock %}
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/0879194601.js" crossorigin="anonymous"></script>
+</html>
